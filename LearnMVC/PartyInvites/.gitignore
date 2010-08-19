@@ -1,7 +1,7 @@
 *.user
-bin
-obj
-*.ncb
-*.pdb
-*.aps
+*/[bB]in
+*/[oO]bj
+*.xamp
+_ReSharper.*
 *.suo
+*.sln.cache
