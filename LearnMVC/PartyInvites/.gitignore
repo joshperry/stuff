@@ -1,7 +1,7 @@
 *.user
 */[bB]in
 */[oO]bj
-*.xamp
+*.xap
 _ReSharper.*
 *.suo
 *.sln.cache
