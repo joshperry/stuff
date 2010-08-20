@@ -1,6 +1,6 @@
 *.user
-*/[bB]in
-*/[oO]bj
+/[bB]in/
+/[oO]bj/
 *.xap
 _ReSharper.*
 *.suo
