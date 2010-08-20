@@ -41,16 +41,18 @@ namespace SportyGeek.WebUI
                 .ConnectionString(c => c.FromConnectionStringWithKey("ormConnection"));
 
             // Have fluent nhibernate automap our data model
+            var domainAssembly = typeof(SportyGeek.Domain.Entities.Product).Assembly;
             var map = AutoMap
-                .Assembly(typeof(SportyGeek.Domain.Entities.Product).Assembly) // look for the model in this assembly
+                .Assembly(domainAssembly) // look for the model in this assembly
                 .Where(e => e.Namespace.EndsWith("Entities")) // where classes are in the Entities namespace
-                .Conventions.AddAssembly(typeof(SportyGeek.Domain.Entities.Product).Assembly) // Detect any convention classes in the current assembly
+                .Conventions.AddAssembly(domainAssembly) // Detect any convention classes in the current assembly
                 .UseOverridesFromAssemblyOf<SportyGeek.Domain.Entities.Product>(); // Detect and use override classes for some of the mapping attributes
 
-            // Bring the DB and Mapping configuration together
+            // Bring the DB and AutoMapping configuration together
             // to create an NHibernate configuration
             var factory = Fluently.Configure()
                 .Database(dbconf)
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SportyGeek.Domain.Entities.Product>())
                 .Mappings(m => m.AutoMappings.Add(map))
                 .ExposeConfiguration(BuildSchema) // Get access to the NHibernate config so that we can run SchemaExport
                 .BuildSessionFactory(); // Return a SessionFactory that is completely configured
