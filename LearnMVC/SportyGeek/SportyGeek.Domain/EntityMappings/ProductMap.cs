@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
 using SportyGeek.Domain.Entities;
+using FluentNHibernate.Automapping.Alterations;
 
 namespace SportyGeek.Domain.EntityMappings
 {
-    class ProductMap : ClassMap<Product>
+    public class ProductMap : IAutoMappingOverride<Product>
     {
-        public ProductMap()
+        public void Override(FluentNHibernate.Automapping.AutoMapping<Product> automap)
         {
-            Map(x => x.Name)
+            automap.Map(p => p.Name)
                 .Length(50);
 
-            Map(x => x.Description)
+            automap.Map(p => p.Description)
                 .Length(500);
 
-            Map(x => x.Category)
+            automap.Map(p => p.Category)
                 .Length(50);
         }
     }

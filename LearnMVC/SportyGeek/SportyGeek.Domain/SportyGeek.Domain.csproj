@@ -48,8 +48,12 @@
   <ItemGroup>
     <Compile Include="Abstract\IProductsRepository.cs" />
     <Compile Include="Concrete\FakeProductsRepository.cs" />
+    <Compile Include="Concrete\NHibernateProductsRepository.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="EntityMappings\Inflector.cs" />
     <Compile Include="EntityMappings\ProductMap.cs" />
+    <Compile Include="EntityMappings\SessionFactoryProvider.cs" />
+    <Compile Include="EntityMappings\TableMappingConvention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

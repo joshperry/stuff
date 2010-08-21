@@ -13,7 +13,7 @@ namespace SportyGeek.WebUI.Controllers
         IProductsRepository _productsRepo;
         public ProductsController()
         {
-            _productsRepo = new FakeProductsRepository();
+            _productsRepo = new NHibernateProductsRepository();
         }
 
         public ActionResult List()
