@@ -26,3 +26,106 @@
 {
     display: none;
 }
+
+body, h1, h2, h3
+{
+    font-family: Cambria, Georgia, "Times New Roman";
+    margin: 0;
+}
+
+body 
+{
+    width: 62.5em;
+    margin: 0 auto;
+}
+
+#header, .title, .item h3, .item h4, .pager a 
+{
+    font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
+}
+
+#header 
+{
+    background-color: #444;
+    color: white;
+}
+
+#header h1 
+{
+    font-size: 2em;
+    padding: .6em;
+}
+
+#content 
+{
+    border-left: 2px solid gray;
+    margin-left: 9em;
+    padding: 1em;
+}
+
+#categories 
+{
+    float: left;
+    width: 8em;
+    padding: .5em;
+}
+
+.item 
+{
+    border-top: 1px dotted gray;
+    padding-top: .7em;
+    margin-bottom: .7em;
+}
+
+.item:first-child 
+{
+    border-top: none;
+    padding-top: none;
+}
+
+.item h3 
+{
+    font-size: 1.3em;
+    margin: 0 0 .25em 0;
+}
+
+.item h4 
+{
+    font-size: 1.1em;
+    margin: .4em 0 0 0;
+}
+
+.pager 
+{
+    border-top: 2px solid silver;
+    padding: .5em 0 0 0;
+    margin-top: 1em;
+    text-align: right;
+    list-style-type: none;
+}
+
+.pager li 
+{
+    display: inline;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.pager li.selected 
+{
+    background-color: #353535;
+    color: White;
+}
+
+.pager a:hover
+{
+    background-color: Silver;
+    color: White;
+}
+
+.pager a 
+{
+    text-decoration: none;
+    color: inherit;
+    padding: 0 .4em 0 .4em;
+}

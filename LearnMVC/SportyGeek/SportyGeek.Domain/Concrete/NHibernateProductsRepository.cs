@@ -8,11 +8,28 @@ using SportyGeek.Domain.Entities;
 
 namespace SportyGeek.Domain.Concrete
 {
-    public class NHibernateProductsRepository : Abstract.IProductsRepository
+    public class NHibernateProductsRepository : Abstract.IEntityRepository<Product>
     {
-        public IQueryable<Entities.Product> Products
+        ISession _session;
+
+        public NHibernateProductsRepository(ISession session)
         {
-            get { return EntityMappings.SessionFactoryProvider.GetSessionFactory().OpenSession().Query<Product>(); }
+            _session = session;
+        }
+
+        public IQueryable<Entities.Product> Query
+        {
+            get { return _session.Query<Product>(); }
+        }
+
+        public void Save(Product product)
+        {
+            return;
+        }
+
+        public void Delete(Product product)
+        {
+            _session.Delete(product);
         }
     }
 }

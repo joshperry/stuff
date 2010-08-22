@@ -5,11 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link rel="Stylesheet" type="text/css" href="~/Content/Site.css" />
 </head>
 <body>
-    <div>
+    <div id="header">
+        <h1>SportGeek Chalet</h1>
+    </div>
+    <div id="categories">
+        Categories go here...
+    </div>
+    <div id="content">
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        
         </asp:ContentPlaceHolder>
     </div>
 </body>

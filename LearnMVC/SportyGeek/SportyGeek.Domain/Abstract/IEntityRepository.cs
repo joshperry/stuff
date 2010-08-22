@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SportyGeek.Domain.Entities;
 
 namespace SportyGeek.Domain.Abstract
 {
-    public interface IProductsRepository
+    public interface IEntityRepository<T>
     {
-        IQueryable<Product> Products { get; }
+        IQueryable<T> Query { get; }
+        void Save(T entity);
+        void Delete(T entity);
     }
 }

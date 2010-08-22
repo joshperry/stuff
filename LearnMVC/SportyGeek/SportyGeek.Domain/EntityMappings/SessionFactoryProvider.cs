@@ -11,7 +11,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace SportyGeek.Domain.EntityMappings
 {
-    class SessionFactoryProvider
+    public class SessionFactoryProvider
     {
         public static ISessionFactory GetSessionFactory()
         {

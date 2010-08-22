@@ -1,16 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<SportyGeek.Domain.Entities.Product>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SportyGeek.WebUI.Models.ProductListViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Products
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<% foreach (var product in Model)
+<% foreach (var product in Model.Products)
    { %>
-    <div class="item">
-        <h3><%: product.Name%></h3>
-        <%: product.Description%>
-        <h4><%: product.Price.ToString("C")%></h4>
-    </div>
+   <% Html.RenderPartial("ProductSummary", product); %>
 <% } %>
+<%: Html.PageLinks(Model.PagingInfo, i => Url.Action("List", new {page = i}), new { Class = "pager" }) %>
 </asp:Content>

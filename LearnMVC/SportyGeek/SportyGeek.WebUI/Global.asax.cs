@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
+using SportyGeek.WebUI.Infrastructure;
+using System.Reflection;
+using SportyGeek.Domain.NinjectModules;
 
 namespace SportyGeek.WebUI
 {
@@ -15,6 +19,12 @@ namespace SportyGeek.WebUI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "ProductListRoot", // Route name
+                "Page{page}", // URL with parameters
+                new { controller = "Products", action = "List", page = 1} // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Default", // Route name
@@ -29,6 +39,15 @@ namespace SportyGeek.WebUI
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
+
+            IKernel kernel = new StandardKernel(
+                new NinjectControllerModule(Assembly.GetExecutingAssembly()),
+                new NHibernateRepositoryModule()
+            );
+            // create one ISession per request, and it's only created when someone asks for one.
+            kernel.Bind<NHibernate.ISession>().ToMethod(c => c.Kernel.Get<NHibernate.ISessionFactory>().OpenSession()).InRequestScope();
+
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));
         }
     }
 }
