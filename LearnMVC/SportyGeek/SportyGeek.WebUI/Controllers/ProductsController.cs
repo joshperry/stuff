@@ -19,11 +19,15 @@ namespace SportyGeek.WebUI.Controllers
             PageSize = 3;
         }
 
-        public ViewResult List(int page = 1)
+        public ViewResult List(int page = 1, string category = null)
         {
+            var products = category == null
+                ? _productsRepo.Query
+                : _productsRepo.Query.Where(p => p.Category == category);
+
             var model = new ProductListViewModel
             {
-                Products = _productsRepo.Query
+                Products = products
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize)
                     .ToList(),
@@ -31,11 +35,17 @@ namespace SportyGeek.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _productsRepo.Query.Count()
-                }
+                    TotalItems = products.Count()
+                },
+                CurrentCategory = category
             };
 
             return View(model);
+        }
+
+        public ViewResult HelloWorld()
+        {
+            return View();
         }
 
         public int PageSize { get; set; }

@@ -21,17 +21,36 @@ namespace SportyGeek.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "ProductListRoot", // Route name
+                "AllProductsPaged", // Route name
                 "Page{page}", // URL with parameters
+                new { controller = "Products", action = "List", category = (string)null }, // Parameter defaults
+                new { page = @"\d+" }
+            );
+
+            routes.MapRoute(
+                "CategoryProducts", // Route name
+                "{category}", // URL with parameters
                 new { controller = "Products", action = "List", page = 1} // Parameter defaults
             );
 
             routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Products", action = "List", id = UrlParameter.Optional } // Parameter defaults
+                "CategoryProductsPaged", // Route name
+                "{category}/Page{page}", // URL with parameters
+                new { controller = "Products", action = "List"}, // Parameter defaults
+                new { page = @"\d+" }
             );
 
+            routes.MapRoute(
+                "Default", // Route name
+                "{controller}/{action}", // URL with parameters
+                new { controller = "Products", action = "List" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "AllProducts", // Route name
+                "", // URL with parameters
+                new { controller = "Products", action = "List", category = (string)null, page = 1 }
+            );
         }
 
         protected void Application_Start()
@@ -48,6 +67,8 @@ namespace SportyGeek.WebUI
             kernel.Bind<NHibernate.ISession>().ToMethod(c => c.Kernel.Get<NHibernate.ISessionFactory>().OpenSession()).InRequestScope();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));
+
+            ViewEngines.Engines.Add(new CsJsViewEngine());
         }
     }
 }

@@ -85,5 +85,57 @@ namespace SportyGeek.Tests
             var viewModel = (ProductListViewModel)result.ViewData.Model;
             Assert.AreEqual(viewModel.PagingInfo, new PagingInfo { TotalItems = 6, ItemsPerPage = 3, CurrentPage = 2 });
         }
+
+        [TestMethod]
+        public void Default_list_products_from_all_Categories()
+        {
+            var products = new Product[] {
+                new Product { Name="P1", Category= "C1" },
+                new Product { Name="P2", Category= "C2" },
+            };
+
+            var repo = new Mock<IEntityRepository<Product>>();
+            repo.SetupGet(r => r.Query).Returns(products.AsQueryable());
+
+            var controller = new ProductsController(repo.Object);
+            controller.PageSize = 2;
+
+            var result = controller.List(1);
+            EnumerableAssert.AreEqual(products, ((ProductListViewModel)result.ViewData.Model).Products);
+        }
+
+        [TestMethod]
+        public void Can_filter_products_by_category()
+        {
+            var products = new Product[] {
+                new Product { Name="P1", Category= "C1" },
+                new Product { Name="P2", Category= "C2" },
+            };
+
+            var repo = new Mock<IEntityRepository<Product>>();
+            repo.SetupGet(r => r.Query).Returns(products.AsQueryable());
+
+            var controller = new ProductsController(repo.Object);
+            controller.PageSize = 2;
+
+            var result = controller.List(1, "C1");
+            var viewModel = result.ViewData.Model as ProductListViewModel;
+            EnumerableAssert.AreEqual(products.Where(p => p.Category == "C1"), viewModel.Products);
+        }
+
+        [TestMethod]
+        public void Category_filter_sets_viewmodel_category()
+        {
+            var products = new Product[] {
+                new Product { Name="P1", Category= "C1" }
+            };
+
+            var repo = new Mock<IEntityRepository<Product>>();
+            repo.SetupGet(r => r.Query).Returns(products.AsQueryable());
+            var controller = new ProductsController(repo.Object);
+
+            var result = controller.List(1, "C1");
+            Assert.AreEqual("C1", ((ProductListViewModel)result.ViewData.Model).CurrentCategory);
+        }
     }
 }
