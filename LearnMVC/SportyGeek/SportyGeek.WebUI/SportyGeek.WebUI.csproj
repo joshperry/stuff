@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\db.sqlite" />
-    <Content Include="Views\Products\HelloWorld.csjs" />
+    <Content Include="Views\Products\HelloWorld.js.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
