@@ -88,10 +88,6 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\ConventionControllerFinder.cs" />
-    <Compile Include="Infrastructure\CsJsContext.cs" />
-    <Compile Include="Infrastructure\CsJsExtensions.cs" />
-    <Compile Include="Infrastructure\CsJsView.cs" />
-    <Compile Include="Infrastructure\CsJsViewEngine.cs" />
     <Compile Include="Infrastructure\IControllerFinder.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\NinjectControllerModule.cs" />
@@ -129,6 +125,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\CsJsViewEngine\SixBit.Web.CsJs.csproj">
+      <Project>{50CC470D-5509-4E10-9C74-E365C88E7383}</Project>
+      <Name>SixBit.Web.CsJs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SportyGeek.Domain\SportyGeek.Domain.csproj">
       <Project>{9FEABA4D-5128-464A-A384-54632D57E6F1}</Project>
       <Name>SportyGeek.Domain</Name>
@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\db.sqlite" />
-    <Content Include="Views\Products\HelloWorld.js.cs" />
+    <Compile Include="Views\Products\HelloWorld.js.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SportyGeek.WebUI.Infrastructure
+namespace SixBit.Web.CsJs
 {
     public class CsJsViewEngine : VirtualPathProviderViewEngine
     {

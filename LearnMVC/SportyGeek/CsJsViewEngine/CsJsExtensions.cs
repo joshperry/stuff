@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SportyGeek.WebUI.Infrastructure
+namespace SixBit.Web.CsJs
 {
     public static class CsJsExtensions
     {

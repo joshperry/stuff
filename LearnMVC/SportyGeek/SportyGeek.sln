@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixBit.Web.CsJs", "CsJsViewEngine\SixBit.Web.CsJs.csproj", "{50CC470D-5509-4E10-9C74-E365C88E7383}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SportyGeek.vsmdi
@@ -35,6 +37,10 @@ Global
 		{D19A448C-8B9B-446A-B88A-75B6B829FEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D19A448C-8B9B-446A-B88A-75B6B829FEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D19A448C-8B9B-446A-B88A-75B6B829FEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CC470D-5509-4E10-9C74-E365C88E7383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CC470D-5509-4E10-9C74-E365C88E7383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CC470D-5509-4E10-9C74-E365C88E7383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CC470D-5509-4E10-9C74-E365C88E7383}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

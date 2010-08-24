@@ -68,7 +68,7 @@ namespace SportyGeek.WebUI
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));
 
-            ViewEngines.Engines.Add(new CsJsViewEngine());
+            ViewEngines.Engines.Add(new SixBit.Web.CsJs.CsJsViewEngine());
         }
     }
 }

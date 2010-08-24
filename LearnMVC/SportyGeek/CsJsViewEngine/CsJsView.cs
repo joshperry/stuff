@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SportyGeek.WebUI.Infrastructure
+namespace SixBit.Web.CsJs
 {
-
-    public abstract class CsJsView : IView
+    public abstract class BaseView : IView
     {
-        public void Render(ViewContext viewContext, System.IO.TextWriter writer)
+        public virtual void Render(ViewContext viewContext, System.IO.TextWriter writer)
         {
             // We'll be writing out javascript
             viewContext.HttpContext.Response.ContentType = "text/javascript";
@@ -19,7 +18,7 @@ namespace SportyGeek.WebUI.Infrastructure
 
             // Have the derived view render it's script into the context
             // then render it to the output stream
-            var ctx = new CsJsContext(viewContext);
+            var ctx = new CsJsViewContext(viewContext);
             Render(ctx);
             writer.Write(ctx.GetScript());
 
@@ -27,12 +26,12 @@ namespace SportyGeek.WebUI.Infrastructure
             writer.Write("} catch(error) { alert('csjs error'); }");
         }
 
-        public abstract void Render(CsJsContext csjs);
+        public abstract void Render(CsJsViewContext csjs);
     }
 
-    public abstract class CsJsView<MT> : CsJsView where MT : class
+    public abstract class BaseView<MT> : BaseView where MT : class
     {
-        public void Render(ViewContext viewContext, System.IO.TextWriter writer)
+        public override void Render(ViewContext viewContext, System.IO.TextWriter writer)
         {
             Model = viewContext.Controller.ViewData.Model as MT;
             base.Render(viewContext, writer);

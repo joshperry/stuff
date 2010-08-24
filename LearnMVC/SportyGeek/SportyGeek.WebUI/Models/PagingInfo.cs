@@ -24,5 +24,10 @@ namespace SportyGeek.WebUI.Models
                 && this.ItemsPerPage == other.ItemsPerPage
                 && this.CurrentPage == other.CurrentPage;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() ^ TotalItems.GetHashCode() ^ ItemsPerPage.GetHashCode() ^ CurrentPage.GetHashCode();
+        }
     }
 }

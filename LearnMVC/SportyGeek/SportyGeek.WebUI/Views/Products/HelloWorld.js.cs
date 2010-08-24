@@ -1,14 +1,13 @@
 ﻿using System.Web.Mvc;
-using SportyGeek.WebUI.Infrastructure;
+using SixBit.Web.CsJs;
 
 namespace SportyGeek.WebUI.Views.Products
 {
-    class HelloWorld : CsJsView
+    class HelloWorld : BaseView
     {
-        public override void Render(CsJsContext csjs)
+        public override void Render(CsJsViewContext csjs)
         {
             csjs.Alert("Hello from csjs!");
-            
         }
     }
 }
